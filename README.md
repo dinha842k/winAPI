@@ -37,3 +37,31 @@ int wmain(int args,wchar_t ** argv){
  }
   
 ```
+## main fuc combine all
+#### prototype
+```c
+int _tmain(void);
+int _tmain(int args,_TCHAR **argv);
+int _tmain(int args,_TCHAR *argv[]);
+```
+#### example
+```c
+#define _UNICODE
+#define UNICODE
+// if not define it will use ANSI
+#include <windows.h>
+#include <tchar.h>
+
+int _tmain(int args,_TCHAR **argv){
+  PDWORD c = NULL;
+  HANDLE std = GetStdHandle(STD_OUTPUT_HANDLE);
+  if(std == INVALID_HANLE_VALUE){
+    _tprintf(L"error on get handle (%d)",GetLastError());
+   }
+   if(argv[1]){
+     WriteConsole(std,argv[1],_tcslen(argv[]1),c,NULL);
+    }
+   CloseHandle(std);
+   return 0;
+}
+```
